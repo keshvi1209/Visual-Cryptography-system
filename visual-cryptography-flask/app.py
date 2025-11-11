@@ -1,12 +1,13 @@
 import io
 import base64
 import random
+import os
 from flask import Flask, render_template, request, redirect, url_for, flash
 from PIL import Image
 import numpy as np
 
 app = Flask(__name__)
-app.secret_key = "change-me"  # needed for flash messages
+app.secret_key = os.environ.get("SECRET_KEY", "change-me")  # needed for flash messages
 app.config["MAX_CONTENT_LENGTH"] = 10 * 1024 * 1024  # 10MB upload limit
 
 def to_bw(img, threshold=128):
