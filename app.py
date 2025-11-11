@@ -35,7 +35,6 @@ def generate_shares_from_bw(bw_arr):
             pat = random.choice(patterns)
             # Debug logging
             try:
-                print(f"i={i}, j={j}, pat.shape={pat.shape}, pixel={pixel}")
                 if pixel == 255:  # white pixel -> complementary patterns
                     share1[i*2:i*2+2, j*2:j*2+2] = pat
                     share2[i*2:i*2+2, j*2:j*2+2] = 255 - pat
