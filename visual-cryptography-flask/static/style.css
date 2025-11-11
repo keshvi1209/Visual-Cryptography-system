@@ -1,0 +1,2 @@
+/* Extra overrides (Tailwind is loaded via CDN in base.html) */
+body { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }

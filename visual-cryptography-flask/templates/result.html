@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-6xl mx-auto">
+
+  <div class="bg-gray-800/60 backdrop-blur rounded-2xl p-6 shadow-xl">
+    <h2 class="text-lg font-semibold mb-4 text-white">Original (B/W)</h2>
+    <img class="w-full rounded-xl border border-gray-700" src="data:image/png;base64,{{ original }}" alt="original">
+    
+    <div class="flex justify-between items-center mt-4">
+      <a href="/" class="text-sm text-blue-400 hover:underline">← Choose another image</a>
+      <p class="text-sm text-gray-400">
+        {{ width }}×{{ height }} • Threshold: {{ threshold }}
+      </p>
+    </div>
+  </div>
+
+  <div class="bg-gray-800/60 backdrop-blur rounded-2xl p-6 shadow-xl">
+    <h2 class="text-lg font-semibold mb-4 text-white">Share 1</h2>
+    <img class="w-full rounded-xl border border-gray-700" src="data:image/png;base64,{{ share1 }}" alt="share1">
+    
+    <a download="share1.png" href="data:image/png;base64,{{ share1 }}" class="mt-4 inline-block px-4 py-2 rounded-lg bg-indigo-600 hover:bg-indigo-700 text-sm font-semibold text-white">
+      Download Share 1
+    </a>
+  </div>
+
+  <div class="bg-gray-800/60 backdrop-blur rounded-2xl p-6 shadow-xl">
+    <h2 class="text-lg font-semibold mb-4 text-white">Share 2</h2>
+    <img class="w-full rounded-xl border border-gray-700" src="data:image/png;base64,{{ share2 }}" alt="share2">
+    
+    <a download="share2.png" href="data:image/png;base64,{{ share2 }}" class="mt-4 inline-block px-4 py-2 rounded-lg bg-indigo-600 hover:bg-indigo-700 text-sm font-semibold text-white">
+      Download Share 2
+    </a>
+  </div>
+
+  <div class="bg-gray-800/60 backdrop-blur rounded-2xl p-6 shadow-xl">
+    <h2 class="text-lg font-semibold mb-4 text-white">Revealed Secret (Stacked)</h2>
+    <img class="w-full rounded-xl border border-gray-700" src="data:image/png;base64,{{ stacked }}" alt="stacked">
+    
+    <a download="stacked.png" href="data:image/png;base64,{{ stacked }}" class="mt-4 inline-block px-4 py-2 rounded-lg bg-indigo-600 hover:bg-indigo-700 text-sm font-semibold text-white">
+      Download Revealed Image
+    </a>
+  </div>
+
+</div>
+{% endblock %}
