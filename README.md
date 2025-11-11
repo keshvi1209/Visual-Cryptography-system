@@ -20,11 +20,6 @@ python app.py
 ```
 Open: http://127.0.0.1:5000
 
-## 🧪 API Test
-```bash
-curl -X POST -F "image=@sample.png" -F "threshold=128" http://127.0.0.1:5000/api/generate
-```
-
 ## 🐳 Optional: Docker
 ```bash
 docker build -t vc-flask .
