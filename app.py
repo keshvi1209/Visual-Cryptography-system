@@ -33,12 +33,18 @@ def generate_shares_from_bw(bw_arr):
         for j in range(width):
             pixel = bw_arr[i, j]
             pat = random.choice(patterns)
-            if pixel == 255:  # white pixel -> complementary patterns
-                share1[i*2:i*2+2, j*2:j*2+2] = pat
-                share2[i*2:i*2+2, j*2:j*2+2] = 255 - pat
-            else:  # black pixel -> same pattern
-                share1[i*2:i*2+2, j*2:j*2+2] = pat
-                share2[i*2:i*2+2, j*2:j*2+2] = pat
+            # Debug logging
+            try:
+                print(f"i={i}, j={j}, pat.shape={pat.shape}, pixel={pixel}")
+                if pixel == 255:  # white pixel -> complementary patterns
+                    share1[i*2:i*2+2, j*2:j*2+2] = pat
+                    share2[i*2:i*2+2, j*2:j*2+2] = 255 - pat
+                else:  # black pixel -> same pattern
+                    share1[i*2:i*2+2, j*2:j*2+2] = pat
+                    share2[i*2:i*2+2, j*2:j*2+2] = pat
+            except Exception as e:
+                print(f"Error at i={i}, j={j}: {e}")
+                raise
 
     stacked = np.minimum(share1, share2)
     return share1, share2, stacked
@@ -71,7 +77,12 @@ def generate():
     threshold = request.form.get("threshold", type=int) or 128
     # convert to pure B/W
     bw = to_bw(img, threshold=threshold)
-    s1, s2, stacked = generate_shares_from_bw(bw)
+    try:
+        s1, s2, stacked = generate_shares_from_bw(bw)
+    except Exception as e:
+        print(f"Error in generate_shares_from_bw: {e}")
+        flash("Internal error during share generation.")
+        return redirect(url_for("index"))
 
     # Encode all images to base64 for embedding
     bw_b64 = arr_to_b64_png(bw)
