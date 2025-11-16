@@ -69,6 +69,7 @@ def generate():
 
     try:
         img = Image.open(file.stream)
+        img.thumbnail((500, 500))
     except Exception:
         flash("Could not open image. Try PNG or JPG.")
         return redirect(url_for("index"))
