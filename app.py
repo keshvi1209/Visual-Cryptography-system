@@ -99,7 +99,9 @@ def generate():
         share2=s2_b64,
         stacked=stacked_b64
     )
-
+@app.route("/", methods=["GET"])
+def index():
+    return render_template("index.html")
 @app.route("/merge", methods=["GET", "POST"])
 def merge():
     if request.method == "GET":
